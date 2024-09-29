@@ -1,50 +1,63 @@
 <script>
   export let label = "";
-  export let required = false;
-  export let inputValue = "";
-  export let maxLength = 17; 
   export let type = "text"; 
+  export let value = "";
+  export let required = false;
+  export let minLength = 0;
+  export let maxLength = Infinity;
+  export let onInput;  
   export let error = "";
 
-  function handleInput(event) {
-    const newValue = event.target.value.replace(/\D/g, '');
-    inputValue = newValue;
+  let inputValue = value;
 
-    if (inputValue.length > maxLength) {
-      error = `Длина не должна превышать ${maxLength} символов.`;
-    } else {
-      error = '';
-    }
-  }
+ function handleInput(event) {
+   inputValue = event.target.value;
+ 
+   if (onInput) onInput(event);
+ 
+   if (type === 'tel') {
+     inputValue = inputValue.replace(/\D/g, '');
+     if (inputValue.length < minLength || inputValue.length > maxLength) {
+       error = `Номер телефона должен содержать от ${minLength} до ${maxLength} цифр.`;
+     } else {
+       error = '';
+     }
+   } else {
+     if (inputValue.length < minLength || inputValue.length > maxLength) {
+       error = `Длина должна быть от ${minLength} до ${maxLength} символов.`;
+     } else {
+       error = '';
+     }
+   }
+ }
 </script>
 
 <div class="input-field">
-  <label for={`input-${label}`}>
+  <label for="input-{label}">
     {label}
     {required ? "*" : ""}
   </label>
-
   {#if type === 'text'}
     <input
       type="text"
       bind:value={inputValue}
       placeholder={label}
       maxlength={maxLength}
-      required={required}
+      minlength={minLength}
+      {required}
       on:input={handleInput}
-      id={`input-${label}`}
+      id="input-{label}"
     />
   {/if}
-
+                                     
   {#if type === 'email'}
     <input
       type="email"
       bind:value={inputValue}
       placeholder={label}
-      maxlength={maxLength}
-      required={required}
+      {required}
       on:input={handleInput}
-      id={`input-${label}`}
+      id="input-{label}"
     />
   {/if}
 
@@ -53,14 +66,13 @@
       type="tel"
       bind:value={inputValue}
       placeholder={label}
-      required={required}
+      {required}
       on:input={handleInput}
-      id={`input-${label}`}
-      maxlength={maxLength}
-      title="Только цифры"
+      id="input-{label}"
+
+      maxlength="17"
     />
   {/if}
-
   {#if error}
     <span class="error">{error}</span>
   {/if}
@@ -73,8 +85,6 @@
     flex-direction: column;
     width: 360px;
     gap: 10px;
-  
-  
   }
   @media (max-width: 450px) {
     .input-field {
@@ -113,3 +123,8 @@
     font-size: 0.875rem;
   }
 </style>
+
+
+
+
+
