@@ -1,0 +1,17 @@
+html, body {
+	position: relative;
+	width: 100%;
+	min-height: 100%;
+}
+
+body {
+	color: #333;
+	margin: 0;
+	padding: 8px;
+	box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+	background-color: rgb(0, 0, 0) !important;
+	display: flex;
+    align-items: center;
+	background-image: url("https://s3-alpha-sig.figma.com/img/cbde/7bdf/d9a3fd8486f0a2c32ba10c4d49168170?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Lzm01ewma9Pimglw5ShDx4Uzzy1jIE~~SU9WCM3vEcQa72Kb9Jqf-NVMpay5J1SvRN6gTIwxjmGGjeVV~20bNMm80rmQ5OWFypO3tl907rPEzMFCqz4ZPXWr83utNnhUCyQczURzMUipN8IkskgXwWakYSYFIYd7mld~lhmN8mdb-kR00t3JI4KNLle3Qpiv6ATKYYhohASky6mZ55tB2TqEOTwsPUl-~2nKgaWEOuDCTQTpU4GEG7d3lKCjBDsC3u-Q9L8Eti5EauMOfi2gYeVlNJfeTnV-VS46iN4YCvdhM16ehl6QbfLqP9RAZqa8gtFRgtdp3jB0-DftPsh6cg__") !important;
+}
